@@ -1,11 +1,6 @@
-from pathlib import Path
-
 from selene import browser, be, have, by
-import os
 
-
-def path(file_name):
-    os.path.abspath(f'../resources/{file_name}')
+from demoqa_tests.resources import path
 
 
 def test_student_registration_form():
