@@ -1,5 +1,11 @@
+from pathlib import Path
+
 from selene import browser, be, have, by
 import os
+
+
+def path(file_name):
+    os.path.abspath(f'../resources/{file_name}')
 
 
 def test_student_registration_form():
@@ -23,7 +29,8 @@ def test_student_registration_form():
     browser.element("#subjectsInput").should(be.blank).type("a").press_enter()
     browser.element('[for="hobbies-checkbox-1"]').click()
 
-    browser.element('#uploadPicture.form-control-file').send_keys(os.path.abspath('../orig.jpg'))
+    browser.element('#uploadPicture.form-control-file').send_keys(path('orig.jpg'))
+    # browser.element('#uploadPicture.form-control-file').send_keys(os.path.abspath('../resources/orig.jpg'))
 
     browser.element('#currentAddress').type('address')
     browser.element("#state").should(be.clickable).click()
