@@ -4,8 +4,6 @@ from demoqa_tests import resources
 
 
 class RegistrationPage:
-    # def __init__(self):
-    #     self.registered_user_data = browser.element('.table').all('td').even
 
     def open(self):
         browser.open("/")
@@ -54,12 +52,6 @@ class RegistrationPage:
 
     def submit(self):
         browser.element("#submit").click()
-
-
-    # def registered_user_data(self):
-    #     return browser.element('.table').all('td').even
-
-
 
     def should_registered_user_with(self, full_name, email, gender, number, date_of_birth, subjects, hobby, picture, address,
                                     state_and_city):
