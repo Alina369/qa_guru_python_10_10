@@ -30,20 +30,7 @@ def test_student_registration_form():
 
     # THEN
 
-    # registration_page.registered_user_data.should(have.texts(
-    #         'Anna Ivanova',
-    #         'testemail@mail.ru',
-    #         'Female',
-    #         '8952333222',
-    #         '24 March,1994',
-    #         'Maths',
-    #         'Sports',
-    #         'orig.jpg',
-    #         'Lenina Street 18',
-    #         'NCR Delhi'
-    # ))
-
-    registration_page.should_registered_user_with(
+    registration_page.registered_user_data.should(have.texts(
             'Anna Ivanova',
             'testemail@mail.ru',
             'Female',
@@ -54,7 +41,20 @@ def test_student_registration_form():
             'orig.jpg',
             'Lenina Street 18',
             'NCR Delhi'
-    )
+    ))
+
+    # registration_page.should_registered_user_with(
+    #         'Anna Ivanova',
+    #         'testemail@mail.ru',
+    #         'Female',
+    #         '8952333222',
+    #         '24 March,1994',
+    #         'Maths',
+    #         'Sports',
+    #         'orig.jpg',
+    #         'Lenina Street 18',
+    #         'NCR Delhi'
+    # )
 
 
 

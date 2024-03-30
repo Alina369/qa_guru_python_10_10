@@ -4,8 +4,8 @@ from demoqa_tests import resources
 
 
 class RegistrationPage:
-    # def __init__(self):
-    #     self.registered_user_data = browser.element('.table').all('td').even
+    def __init__(self):
+        self.registered_user_data = browser.element('.table').all('td').even
 
     def open(self):
         browser.open("/")
@@ -61,16 +61,16 @@ class RegistrationPage:
 
 
 
-    def should_registered_user_with(self, full_name, email, gender, number, date_of_birth, subjects, hobby, picture, address,
-                                    state_and_city):
-        browser.element('.table').all('td').even.should(have.texts(
-            full_name,
-            email,
-            gender,
-            number,
-            date_of_birth,
-            subjects,
-            hobby,
-            picture,
-            address,
-            state_and_city))
+    # def should_registered_user_with(self, full_name, email, gender, number, date_of_birth, subjects, hobby, picture, address,
+    #                                 state_and_city):
+    #     browser.element('.table').all('td').even.should(have.texts(
+    #         full_name,
+    #         email,
+    #         gender,
+    #         number,
+    #         date_of_birth,
+    #         subjects,
+    #         hobby,
+    #         picture,
+    #         address,
+    #         state_and_city))
