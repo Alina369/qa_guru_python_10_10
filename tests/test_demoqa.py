@@ -1,52 +1,62 @@
-from selene import browser, be, have, by
+from selene import have
 
-from demoqa_tests.resources import path
+from demoqa_tests.pages.registration_page import RegistrationPage
 
 
 def test_student_registration_form():
-    browser.open("/")
+    registration_page = RegistrationPage()
+
+    registration_page.open()
 
     #WHEN
-    browser.element("#firstName").type("Anna")
-    browser.element("#lastName").type("Ivanova")
-    browser.element("#userEmail").type("testemail@mail.ru")
+    registration_page.fill_first_name("Anna")
+    registration_page.fill_last_name("Ivanova")
+    registration_page.email("testemail@mail.ru")
 
-    female = (browser.element('[name=gender][value=Female]+label'))
-    female.click()
+    registration_page.genger('Female')
+    registration_page.number("8952333222")
+    registration_page.date_of_birth('1994', 'March', '24')
 
-    browser.element("#userNumber").type("8952333222")
+    registration_page.fill_subjects("a")
+    registration_page.select_hobbies('Sports')
+    registration_page.upload_picture('orig.jpg')
+    
+    registration_page.fill_address('Lenina Street 18')
+    registration_page.select_state('NCR')
+    registration_page.select_city('Delhi')
 
-    browser.element("#dateOfBirthInput").click()
-    browser.element(".react-datepicker__month-select").element('option[value="2"]').click()
+    registration_page.submit()
 
-    browser.element(".react-datepicker__year-select").element('option[value="1994"]').click()
-    browser.element(".react-datepicker__day--024").click()
-    browser.element("#subjectsInput").should(be.blank).type("a").press_enter()
-    browser.element('[for="hobbies-checkbox-1"]').click()
-
-    browser.element('#uploadPicture.form-control-file').send_keys(path('orig.jpg'))
-    # browser.element('#uploadPicture.form-control-file').send_keys(os.path.abspath('../resources/orig.jpg'))
-
-    browser.element('#currentAddress').type('address')
-    browser.element("#state").should(be.clickable).click()
-    browser.element(by.text('NCR')).should(be.clickable).click()
-    browser.element("#city").should(be.clickable).click()
-    browser.element(by.text('Delhi')).should(be.clickable).click()
-
-    browser.element("#submit").click()
 
     # THEN
-    browser.element('.table').all('td').even.should(have.texts(
-        'Anna Ivanova',
-        'testemail@mail.ru',
-        'Female',
-        '8952333222',
-        '24 March,1994',
-        'Maths',
-        'Sports',
-        'orig.jpg',
-        'address',
-        'NCR Delhi'))
+
+    # registration_page.registered_user_data.should(have.texts(
+    #         'Anna Ivanova',
+    #         'testemail@mail.ru',
+    #         'Female',
+    #         '8952333222',
+    #         '24 March,1994',
+    #         'Maths',
+    #         'Sports',
+    #         'orig.jpg',
+    #         'Lenina Street 18',
+    #         'NCR Delhi'
+    # ))
+
+    registration_page.should_registered_user_with(
+            'Anna Ivanova',
+            'testemail@mail.ru',
+            'Female',
+            '8952333222',
+            '24 March,1994',
+            'Maths',
+            'Sports',
+            'orig.jpg',
+            'Lenina Street 18',
+            'NCR Delhi'
+    )
+
+
 
 
 
