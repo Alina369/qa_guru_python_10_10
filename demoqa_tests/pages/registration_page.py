@@ -19,18 +19,20 @@ class RegistrationPage:
             f".react-datepicker__day--0{day}"
         ).click()
 
-    def should_registered_user_with(self, fullname, email, gender, number, date_of_birth, subjects, hobbies, picture, address, state_and_city):
+    def should_registered_user_with(self, user: User):
         browser.element('.table').all('td').even.should(have.texts(
-            fullname,
-            email,
-            gender,
-            number,
-            date_of_birth,
-            subjects,
-            hobbies,
-            picture,
-            address,
-            state_and_city))
+            f'{user.first_name} {user.last_name}',
+            user.email,
+            user.gender,
+            user.number,
+            f'{user.day} {user.month},{user.year}',
+            user.subjects,
+            user.hobbies,
+            user.picture,
+            user.address,
+            f'{user.state} {user.city}'
+    ))
+
 
     def fill_last_name(self, value):
         browser.element("#lastName").type(value)
@@ -49,7 +51,7 @@ class RegistrationPage:
         browser.element("#subjectsInput").should(be.blank).type(value).press_enter()
 
     def select_hobbies(self, value):
-        browser.element(f'[for="hobbies-checkbox-{value}"]').click()
+        browser.all('.custom-checkbox').element_by(have.exact_text(value)).click()
 
     def upload_picture(self, value):
         browser.element('#uploadPicture.form-control-file').send_keys(resource.path(value))
@@ -75,8 +77,6 @@ class RegistrationPage:
         self.select_gender(user.gender)
         self.fill_number(user.number)
         self.date_of_birth(user.year, user.month, user.day)
-        # self.date_of_birth(user.month)
-        # self.date_of_birth(user.day)
         self.fill_subjects(user.subjects)
         self.select_hobbies(user.hobbies)
         self.upload_picture(user.picture)
