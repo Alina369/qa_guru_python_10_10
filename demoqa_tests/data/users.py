@@ -8,7 +8,9 @@ class User:
     email: str
     gender: str
     number: str
-    date_of_birth: str
+    year: str
+    month: str
+    day: str
     subjects: str
     hobbies: str
     picture: str
@@ -24,7 +26,9 @@ student = User(
     email='testemail@mail.ru',
     gender='Female',
     number="8952333222",
-    date_of_birth='24 May,1999',
+    year='1999',
+    month='May',
+    day='24',
     subjects='a',
     hobbies='1',
     picture='orig.jpg',

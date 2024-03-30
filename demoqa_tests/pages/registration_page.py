@@ -19,7 +19,7 @@ class RegistrationPage:
             f".react-datepicker__day--0{day}"
         ).click()
 
-    def should_registered_user_with(self, fullname, email, gender, number, date_of_birth, subjects, hobbies, picture, address, state, city):
+    def should_registered_user_with(self, fullname, email, gender, number, date_of_birth, subjects, hobbies, picture, address, state_and_city):
         browser.element('.table').all('td').even.should(have.texts(
             fullname,
             email,
@@ -30,8 +30,7 @@ class RegistrationPage:
             hobbies,
             picture,
             address,
-            state,
-            city))
+            state_and_city))
 
     def fill_last_name(self, value):
         browser.element("#lastName").type(value)
@@ -75,7 +74,9 @@ class RegistrationPage:
         self.fill_email(user.email)
         self.select_gender(user.gender)
         self.fill_number(user.number)
-        self.date_of_birth(user.date_of_birth)
+        self.date_of_birth(user.year, user.month, user.day)
+        # self.date_of_birth(user.month)
+        # self.date_of_birth(user.day)
         self.fill_subjects(user.subjects)
         self.select_hobbies(user.hobbies)
         self.upload_picture(user.picture)

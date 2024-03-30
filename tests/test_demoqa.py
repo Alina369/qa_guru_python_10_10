@@ -15,10 +15,10 @@ def test_student_registration_form():
         'testemail@mail.ru',
         'Female',
         '8952333222',
-        '24', 'May,', '1999',
+        '24 May,1999',
         'Maths',
         'Sports',
         'orig.jpg',
         'Moscowskaya Street 18',
-        'NCR', 'Delhi'
+        'NCR Delhi'
     )
