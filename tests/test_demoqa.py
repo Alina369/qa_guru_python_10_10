@@ -12,6 +12,3 @@ def test_student_registration_form():
 
     # THEN
     registration_page.should_registered_user_with(student)
-
-
-

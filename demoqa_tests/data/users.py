@@ -19,7 +19,6 @@ class User:
     city: str
 
 
-
 student = User(
     first_name='Anna',
     last_name='Ivanova',
